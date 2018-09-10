@@ -22,6 +22,3 @@ pip3 install selenium
 ```
 pip3 install json
 ```
-
-### Special Note
-The key and secret key are included for demo purposes. Normally these would not be included.

@@ -3,10 +3,11 @@
 
 ## Getting Started
 Given a search query, the application will scrape Google for images and upload them to a designated dropbox folder.
-1. Generate an authorization token following the steps provided in the CLI.
-2. Enter your authorization token.
-3. Enter the name of the dropbox destination folder.
-4. Enter a search query.
+1. Run 'python3 dropbox_app.py' in the terminal
+2. Generate an authorization token following the steps provided in the CLI.
+3. Enter your authorization token.
+4. Enter the name of the dropbox destination folder.
+5. Enter a search query.
 
 ### Requirements
 1. Python3

@@ -74,13 +74,16 @@ def driver():
     folders = [folder.name.lower() for folder in dbx.files_list_folder('').entries]
     while folder_name.lower() in folders or not is_valid_folder_name(folder_name):
         folder_name = input("That name is taken or invalid. Enter new a folder name: ")
+    print('Creating dropbox folder...')
     dbx.files_create_folder_v2('/' + folder_name)
 
+    print('Launching Chrome...')
     # launches the chrome webdriver
     browser = webdriver.Chrome()
     browser.get(url)
 
     # scrolls down the page to load more images
+    print('Loading images...')
     for _ in range(1000):
         browser.execute_script("window.scrollBy(0,10000)")
 
@@ -90,12 +93,17 @@ def driver():
     #     browser.execute_script("window.scrollBy(0,10000)")
 
     # scrapes the images and uploads them to dropbox 
+    print('Uploading images to dropbox...')
     counter = 0
     for x in browser.find_elements_by_xpath('//div[contains(@class,"rg_meta")]'):
         counter += 1
         img_url = json.loads(x.get_attribute('innerHTML'))["ou"]
         file_name = query + '_' + str(counter) + '.jpg'
         upload_data(folder_name, file_name, img_url)
+
+        sys.stdout.write("\rImages uploaded: %d" % counter)
+        sys.stdout.flush()
+    print('\nDone.')
 
     browser.close()
 
